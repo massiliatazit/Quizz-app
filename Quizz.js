@@ -6,10 +6,12 @@ const questions = [
       difficulty: "easy",
       question: "What does CPU stand for?",
       correct_answer: "Central Processing Unit",
-      incorrect_answers: [
+      answers: [
         "Central Process Unit",
         "Computer Personal Unit",
+        "Central Processing Unit",
         "Central Processor Unit",
+
       ],
     },
     {
@@ -17,9 +19,9 @@ const questions = [
       type: "multiple",
       difficulty: "easy",
       question:
-        "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn&#039;t get modified?",
+        "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?",
       correct_answer: "Final",
-      incorrect_answers: ["Static", "Private", "Public"],
+      answers: ["Static", "Private", "Public","Final"],
     },
     {
       category: "Science: Computers",
@@ -27,7 +29,7 @@ const questions = [
       difficulty: "easy",
       question: "The logo for Snapchat is a Bell.",
       correct_answer: "False",
-      incorrect_answers: ["True"],
+      answers: ["False","True"],
     },
     {
       category: "Science: Computers",
@@ -36,7 +38,7 @@ const questions = [
       question:
         "Pointers were not used in the original C programming language; they were added later on in C++.",
       correct_answer: "False",
-      incorrect_answers: ["True"],
+      answers: ["False","True"],
     },
     {
       category: "Science: Computers",
@@ -45,7 +47,7 @@ const questions = [
       question:
         "What is the most preferred image format used for logos in the Wikimedia database?",
       correct_answer: ".svg",
-      incorrect_answers: [".png", ".jpeg", ".gif"],
+      answers: [".svg",".png", ".jpeg", ".gif"],
     },
     {
       category: "Science: Computers",
@@ -53,10 +55,11 @@ const questions = [
       difficulty: "easy",
       question: "In web design, what does CSS stand for?",
       correct_answer: "Cascading Style Sheet",
-      incorrect_answers: [
+      answers: [
         "Counter Strike: Source",
         "Corrective Style Sheet",
         "Computer Style Sheet",
+        "Cascading Style Sheet"
       ],
     },
     {
@@ -66,8 +69,9 @@ const questions = [
       question:
         "What is the code name for the mobile operating system Android 7.0?",
       correct_answer: "Nougat",
-      incorrect_answers: [
+      answers: [
         "Ice Cream Sandwich",
+        "Nougat",
         "Jelly Bean",
         "Marshmallow",
       ],
@@ -78,7 +82,7 @@ const questions = [
       difficulty: "easy",
       question: "On Twitter, what is the character limit for a Tweet?",
       correct_answer: "140",
-      incorrect_answers: ["120", "160", "100"],
+      answers: ["120", "160","140", "100"],
     },
     {
       category: "Science: Computers",
@@ -86,7 +90,7 @@ const questions = [
       difficulty: "easy",
       question: "Linux was first created as an alternative to Windows XP.",
       correct_answer: "False",
-      incorrect_answers: ["True"],
+      answers: ["True","False"],
     },
     {
       category: "Science: Computers",
@@ -95,69 +99,104 @@ const questions = [
       question:
         "Which programming language shares its name with an island in Indonesia?",
       correct_answer: "Java",
-      incorrect_answers: ["Python", "C", "Jakarta"],
+      answers: ["Python","Java", "C", "Jakarta"],
     },
   ];
 
 
+  
+  
   let quizzOver = false ;
-  
-   
-    
-
-
-   
-
-  
   let currentquestionindex =0;
+  let questionNumber = 1;
+  let score = 0;
   
-
   function showquestion (){
     
-    let  questioncontainer = document.querySelector('.question')
-    questioncontainer.innerText = questions[currentquestionindex].question
-   
+    let  questionText = document.querySelector('.questionText')
+    questionText.innerText = questions[currentquestionindex].question
+    let questionNumber = document.querySelector('.questionNumber')
+    questionNumber.innerHTML = questions.length
+   // let answer_options = document.querySelector('.answer container')
 
-    }
+
+   }
 
   showquestion()
 
 
   function Nextquestion(){
-    showquestion(questions[currentquestionindex])
+    
+    let nextButton = document.querySelector('.nextquestionButton')
+    let choice = document.querySelectorAll('.choice')
+    
+    currentquestionindex++;
+    questionNumber++;
+    nextButton.classList.add('hidden')
+    for (i=0;i<choice.length;i++){
+
+      choice[i].classList.remove('wrong')
+      choice[i].classList.remove('correct')
+
+    }
+
+
+    showquestion()
+     
+      
+    
 }
+
+function showanswers(){
+
+ let choice = document.querySelectorAll('.choice-text')
+ for(let i=0;i<questions[0].answers.length;i++){
+    for (j=0; j<questions.length;j++){
+   choice[i].innerHTML = questions[0].answers[i]
+   
+   }
+}
+}
+showanswers()
+
 
 function selectAnswer(){
-    for(i=0;i<questions.length; i++){
-        let  option = document.getElementById("answer").value;
-        console.log(option) 
-        option.innerHTML=questions[i].incorrect_answers[i]
+    let currentTarget = event.target.innerText;
+
+    let currentDiv = event.target;
+    let current_choice = document.querySelectorAll(".choice-text")
+    let currentTargetSplit = currentTarget.split("\n");
+    let currentTargetText = currentTargetSplit.pop(currentTargetSplit.length - 1);
+   //console.log(current_choice.innerText)
     
-     }
+    let correctAnswer = questions[currentquestionindex].correct_answer
+    //console.log(correctAnswer)
+     
+      if (currentTargetText === correctAnswer){
+        currentDiv.classList.add("correct");
+          
+        score+=1
+       }else{
 
+        currentDiv.classList.add("wrong");  
+       }
+  
+  
+       console.log("Current Score is: " + score);
+      
+ }
 
-}
-selectAnswer()
 
 
 
 
 
   window.onload = function () {
-    //IF YOU ARE DISPLAYING ALL THE QUESTIONS TOGETHER:
-    //HINT: for each question, create a container with the "question"
-    //create a radio button https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio with, as option the both the correct answer and the incorrect answers
-    //when EVERY question has an answer (google for how to get a value from a radio button with JS)
-    //IF YOU ARE DISPLAYING ONE QUESTION AT A TIME
-    //Display first question with a title + radio button
-    //when the user select the answer, pick the next question and remove this from the page after added in a varible the users' choice.
+
+  
+
 
    
   
 
-  };
-
-  //HOW TO calculate the result
-  //You can do it in 2 ways:
-  //If you are presenting all questions together, just take all the radio buttons and check if the selected answer === correct_answer
-  //If you are presenting one question at a time, just add one point or not to the user score if the selected answer === correct_answer
+  }

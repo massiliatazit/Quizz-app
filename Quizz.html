@@ -39,7 +39,7 @@
    
   }
   h1 {
-        font-size: 25px;
+        font-size: 35px;
         text-align: center;
         font-family: "Poppins", sans-serif;
         color: #440628;
@@ -57,21 +57,12 @@
 
  }
 
- #answer{
-
-background-color: grey;
-border: 1px solid #FFFF00;
-margin: 10px;
-font-size: 2em;
-
- }
-
 
 .container{
 
     background-color: darkorchid;
     border-radius: 8px;
-    width: 75%;
+    width: 63%;
     margin: auto;
     margin-top: 190px;
     padding-top: 5px;
@@ -93,7 +84,9 @@ font-size: 2em;
     cursor: pointer;
 }
 
-.question{
+
+
+.questionText{
     font-family:  "Poppins", sans-serif;
     font-size: 2em;
     width: 90%;
@@ -103,7 +96,90 @@ font-size: 2em;
     background-color: rgb(150, 173, 196);
     text-align: center;
     color: navy;
+}
+.questionNumber{
+    font-size: 12px;
+    letter-spacing: 3px;;
+    padding: 10px;
+    width: 70px;
+    text-align: center;
+    margin: 0 auto;
+    color: #00ff84c7;
 
+}
+.choice{
+    display: flex;
+    margin-bottom: 12px;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 4px;
+    background-color:#4938a5;
+    border: 1px solid #428dd349;
+    padding: 20px 10px;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 3px 3px 0px #16a8cc48;
+    transition: all 0.25s ease;
+}
+
+.choice:hover{
+    transform: scale(1.02);
+    background-color: #8855da;
+}
+
+.choice:active{
+    transform: scale(1.00);
+}
+
+.choice-pre{
+    color:  #F7F7FF;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.choice-text{
+    font-weight: 300;
+    font-size: 16px;
+    height: auto;
+    margin: auto;
+    align-content : center;
+}
+
+.correct{
+    background-color: #57a36a;
+}
+
+.correct:hover{
+    background-color: #57a36a;
+}
+
+.wrong{
+    background-color: #b35656;
+}
+
+.wrong:hover{
+    background-color: #b35656;
+}
+
+input{
+    padding: 10px;
+    border:none;
+    border-radius: 16px;
+    background-color: #222222;
+    border: 1px solid #00ff84c7;
+    box-shadow: 0px 0px 10px #00ff843b;
+    color: #F7F7FF;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+input:hover{
+    transform: scale(1.04);
+}
+
+input:active{
+    transform: scale(1);
 }
 
 
@@ -140,31 +216,55 @@ font-size: 2em;
     </style>
   </head>
   <body>
-        <div class ='container'> 
-            <h1> computer science Quiz! </h1>
-            <div class = 'question'> </div>
-        
-                <div class = 'answer container'>
+          <div class ='container'> 
+               <h1> computer science Quiz! </h1>
+              <div id = 'question container'> 
+                <div class = questionText></div>
+                <div class = questionNumber> </div>
 
-                
-                    <input id="answer" type="radio" name="choice" value="a"><label id="label0"></label></input>
+              </div>
+                 
+                  <div class="choice"  onclick="selectAnswer()" >
+                    <div class="choice-pre"></div>
+                    <div class="choice-text"></div>
+                  </div>
+                  <div class="choice"  onclick="selectAnswer()">
+                    <div class="choice-pre"></div>
+                    <div class="choice-text"></div>
+                  </div>
+                  <div class="choice"  onclick="selectAnswer()">
+                    <div class="choice-pre"></div>
+                    <div class="choice-text"></div>
+                  </div>
+                  <div class="choice"  onclick="selectAnswer()">
+                    <div class="choice-pre"></div>
+                    <div class="choice-text"></div>
+                  </div>
+
+               
+
+            
+        
+               
+
+               <!--  <input id="answer" type="radio" name="choice" value="a"><label id="label0"></label></input>
                 
                     <input id="answer" type="radio" name="choice" value="b"><label id="label1"></label></input>
          
                     <input id="answer" type="radio" name="choice" value="c"><label id="label2"></label></input>
                 
                     <input id="answer" type="radio" name="choice" value="d"><label id="label3"></label></input>
-             
-                </div>
-        </di>
-        <div class = 'right answer'></div>
+                -->
         
-        <button class = 'nextquestionButton'> Next Question</button>
+        
+        
+        
+        <input type="button" class = 'nextquestionButton'  value=" Next Question" onclick="Nextquestion()"> </input>
         <br>
         <!--<input type="submit" value="Submit">-->
        
         
-            <button id="submit"> Submit</button>
+            <input type="button" id="submit" onclick="submit()" value = "Submit"> </button>
             <div class = 'result'> </div>    
 
         </div>
