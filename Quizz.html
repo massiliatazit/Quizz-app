@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="eng">
+  <!--
+        QUIZ GAME!
+        RULES:
+        / The player must guess correctly a certain amount of questions
+        / Each correct answer gives him one point
+        / Answers could be “multiple” or “true/false”
+        / At the end of the game, the user must know his total score
+        QUESTIONS:
+        / You can get them from this URL ( http://bit.ly/strive_QUIZZ ) or you can write your own
+        / Could be multiple of boolean (true / false)
+        / [EXTRA] Show if the answer was wrong or correct after clicking
+        / [EXTRA] Present them “one a time”
+        HINTS:
+        / Keep a global variable “score” for the score
+        / Keep a variable “questionNumber” for the “question” the user is answering
+        / When “questionNumber” is bigger then the available questions, present the score
+        / Start working with the question saved in a variable
+        / Start with the easier version and THEN implement the “EXTRAs”
+        / Please debug everything / try it on the console to be sure of what to expect from your code
+        EXTRA:
+        / Show if the answer was wrong or correct after clicking
+        / Present questions one a time
+        / Let the user select difficulty and number of questions (you can get q/a from https://opentdb.com/api.php?amount=10&category=18&difficulty=easy modifying amount and difficulty)
+    -->
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizz App</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;800&display=swap"
+      rel="stylesheet" /> 
+    <style>
+
+    body {
+    background-color: #f8f8f8;
+   
+  }
+  h1 {
+        font-size: 25px;
+        text-align: center;
+        font-family: "Poppins", sans-serif;
+        color: #440628;
+
+      }
+ ul{
+
+    list-style: none;
+ }
+
+ li{
+  font-family: "Poppins", sans-serif;
+  font-size:  2em;
+  color: darkmagenta;
+
+ }
+
+ #answer{
+
+background-color: grey;
+border: 1px solid #FFFF00;
+margin: 10px;
+font-size: 2em;
+
+ }
+
+
+.container{
+
+    background-color: darkorchid;
+    border-radius: 8px;
+    width: 75%;
+    margin: auto;
+    margin-top: 190px;
+    padding-top: 5px;
+    position:relative;
+
+}
+.nextquestionButton{
+ 
+    border-radius: 6px;
+    margin-right: auto;
+    height: 40px;
+    width: 150px;
+    text-align: center;
+    background-color: mediumslateblue;
+    position : right;
+    padding-top: 20px;
+    font-family: fantasy;
+    color:navy;
+    cursor: pointer;
+}
+
+.question{
+    font-family:  "Poppins", sans-serif;
+    font-size: 2em;
+    width: 90%;
+    height: auto;
+    margin: auto;
+    border-radius: 6px;
+    background-color: rgb(150, 173, 196);
+    text-align: center;
+    color: navy;
+
+}
+
+
+#submit{
+
+    border-radius: 6px;
+    margin-right: auto;
+    height: 40px;
+    width: 150px;
+    text-align: center;
+    background-color: mediumslateblue;
+    position : right;
+    padding-top: 20px;
+    font-family: fantasy;
+    color:navy;
+    cursor: pointer;
+    
+}
+
+
+
+.result{
+  width: 30%;
+  height: auto;
+  border-radius: linen;
+  margin: auto;
+  margin-bottom: 35px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+
+}
+
+
+    </style>
+  </head>
+  <body>
+        <div class ='container'> 
+            <h1> computer science Quiz! </h1>
+            <div class = 'question'> </div>
+        
+                <div class = 'answer container'>
+
+                
+                    <input id="answer" type="radio" name="choice" value="a"><label id="label0"></label></input>
+                
+                    <input id="answer" type="radio" name="choice" value="b"><label id="label1"></label></input>
+         
+                    <input id="answer" type="radio" name="choice" value="c"><label id="label2"></label></input>
+                
+                    <input id="answer" type="radio" name="choice" value="d"><label id="label3"></label></input>
+             
+                </div>
+        </di>
+        <div class = 'right answer'></div>
+        
+        <button class = 'nextquestionButton'> Next Question</button>
+        <br>
+        <!--<input type="submit" value="Submit">-->
+       
+        
+            <button id="submit"> Submit</button>
+            <div class = 'result'> </div>    
+
+        </div>
+
+
+
+
+
+
+
+    <script  src="Quizz.js">
+      
+    </script>
+
+
+      
+  </body>
+  </html>
