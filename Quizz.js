@@ -110,14 +110,17 @@ const questions = [
   let currentquestionindex =0;
   let questionNumber = 1;
   let score = 0;
+  let questionCounter = 0;
   
   function showquestion (){
     
     let  questionText = document.querySelector('.questionText')
+    
     questionText.innerText = questions[currentquestionindex].question
     let questionNumber = document.querySelector('.questionNumber')
+    
     questionNumber.innerHTML = questions.length
-   // let answer_options = document.querySelector('.answer container')
+  
 
 
    }
@@ -129,9 +132,9 @@ const questions = [
     
     let nextButton = document.querySelector('.nextquestionButton')
     let choice = document.querySelectorAll('.choice')
-    
+    questionNumber.innerHTML = "Question"+ (questionCounter+1) + "of " +questions.length
     currentquestionindex++;
-    questionNumber++;
+    questionNumber.innerHTML =  questionNumber-1;
     nextButton.classList.add('hidden')
     for (i=0;i<choice.length;i++){
 
@@ -150,13 +153,14 @@ const questions = [
 function showanswers(){
 
  let choice = document.querySelectorAll('.choice-text')
- for(let i=0;i<questions[0].answers.length;i++){
-    for (j=0; j<questions.length;j++){
-   choice[i].innerHTML = questions[0].answers[i]
+ for(let i=0;i<questions[currentquestionindex].answers.length;i++){
    
+   choice[i].innerHTML = questions[currentquestionindex].answers[i]
+    
    }
+  
 }
-}
+
 showanswers()
 
 
@@ -168,28 +172,37 @@ function selectAnswer(){
     let currentTargetSplit = currentTarget.split("\n");
     let currentTargetText = currentTargetSplit.pop(currentTargetSplit.length - 1);
    //console.log(current_choice.innerText)
-    
+   let nextButton = document.querySelector('.nextquestionButton')
     let correctAnswer = questions[currentquestionindex].correct_answer
+    
     //console.log(correctAnswer)
      
       if (currentTargetText === correctAnswer){
+        
         currentDiv.classList.add("correct");
-          
+        nextButton.classList.add('hidden')
+  
         score+=1
        }else{
 
         currentDiv.classList.add("wrong");  
-       }
-  
+       } 
   
        console.log("Current Score is: " + score);
       
  }
 
+ function nextanswer(){
+  
+  let choice = document.querySelectorAll('.choice')
+
+  console.log(choice.innerText)
 
 
 
 
+ }
+ nextanswer()
 
   window.onload = function () {
 
